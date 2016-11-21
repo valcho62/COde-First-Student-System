@@ -17,7 +17,7 @@ namespace Data.Migrations
             //AutomaticMigrationDataLossAllowed = true;
 
         }
-        StudentSystemContex contex = new StudentSystemContex();
+        //StudentSystemContex contex = new StudentSystemContex();
         protected  override void Seed(StudentSystemContex contex)
         {
            
@@ -34,14 +34,14 @@ namespace Data.Migrations
 
         public void FillCourcesWithResources(StudentSystemContex contex, Random rnd)
         {
-            foreach (var item in this.contex.Cources)
+            foreach (var item in contex.Cources)
             {
                 var numberOfResources = rnd.Next(1, 20);
                 for (int i = 0; i < numberOfResources; i++)
                 {
                     var resIndex = rnd.Next(1, 10);
 
-                    var temp = this.contex.Resources.Where(x => x.Id == resIndex).First();
+                    var temp = contex.Resources.Where(x => x.Id == resIndex).First();
                     var temp1 =new Resources();
                     temp1 = temp;
                     item.Resources.Add(temp1);
@@ -49,25 +49,25 @@ namespace Data.Migrations
                 }
                 
             }
-            this.contex.SaveChanges();
+            contex.SaveChanges();
         }
 
         public void FillCourcesWithStudents(StudentSystemContex contex, Random rnd)
         {
            
 
-            foreach (var item in this.contex.Cources)
+            foreach (var item in contex.Cources)
             {
                 var numberOfStudents = rnd.Next(1, 20);
                 for (int i = 0; i < numberOfStudents; i++)
                 {
                     var studentIndex = rnd.Next(1, 10);
 
-                    var temp = this.contex.Students.Where(x => x.Id == studentIndex).First();
+                    var temp = contex.Students.Where(x => x.Id == studentIndex).First();
                     item.Students.Add(temp);
                 } 
             }
-            this.contex.SaveChanges();
+            contex.SaveChanges();
         }
 
         public void FillStudentsTable(StudentSystemContex contex, Random rnd)
@@ -78,9 +78,10 @@ namespace Data.Migrations
             for (int i = 0; i < 10; i++)
             {
                 var courseId = rnd.Next(1, 10);
-                var course = this.contex.Cources.Where(x => x.Id == courseId).First();
+                var course = contex.Cources.Where(x => x.Id == courseId).First();
                 var temp = new Students()
                 {
+                    Id = i+1,
                     Name = names[rnd.Next(0,3)],
                     PhoneNumber = phones[rnd.Next(0,3)],
                     RegistrationDate = DateTime.Now,
@@ -92,7 +93,7 @@ namespace Data.Migrations
            
             foreach (var stud in students)
             {
-                contex.Students.AddOrUpdate(p => p.Name, stud);
+                contex.Students.AddOrUpdate(p => p.Id, stud);
             }
             contex.SaveChanges();
         }
@@ -106,15 +107,16 @@ namespace Data.Migrations
                 var tempId = rnd.Next(1, 4);
                 var temp = new HomeWork()
                 {
-                    
+
+                    Id = i+1,
                     Content = homeNames[rnd.Next(0, 3)],
                     ContentType = (ContentType)rnd.Next(0, 2),
-                    Student = this.contex.Students.Where(x => x.Id == tempId).First(),
+                    Student =contex.Students.Where(x => x.Id == tempId).First(),
                     SubmisionDate = DateTime.Now
                 };
                 home.Add(temp);
             }
-            home.ForEach(res => contex.HomeWorks.AddOrUpdate(x => x.Content, res));
+            home.ForEach(res => contex.HomeWorks.AddOrUpdate(x => x.Id, res));
             contex.SaveChanges();
         }
 
@@ -126,6 +128,7 @@ namespace Data.Migrations
             {
                 var temp = new Resources()
                 {
+                    Id = i+1,
                     Name = resNames[rnd.Next(0,3)],
                     TypeResource = (TypeResource)rnd.Next(0,3),
                     URL = resNames[rnd.Next(0,3)].Substring(0,3)
@@ -146,15 +149,16 @@ namespace Data.Migrations
                 
                 var temp = new Courses()
                 {
+                    Id = i+1,
                     Name = courseName[rnd.Next(0,3)],
                     Price = 1.0M * rnd.Next(1,200),
                     StartDate = start.AddDays(rnd.Next(1,365)),
                     EndDate = start.AddDays(rnd.Next(365,700))
                 };
-               
+              
                 cources.Add(temp);
             }
-            cources.ForEach(course => contex.Cources.AddOrUpdate(x => x.Name,course));
+            cources.ForEach(course => contex.Cources.AddOrUpdate(x => x.Id,course));
             contex.SaveChanges();
         }
     }

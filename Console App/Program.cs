@@ -14,11 +14,11 @@ namespace Console_App
     {
         static void Main()
         {
-           Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentSystemContex,Configuration>());
+           //Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentSystemContex,Configuration>());
             //Database.SetInitializer(new MyInitilizer());
             StudentSystemContex contex = new StudentSystemContex();
 
-            contex.Database.Initialize(false);
+            //contex.Database.Initialize(false);
 
             Console.WriteLine(contex.Students.Count());
             //Console.WriteLine(contex.Resources.Count());

@@ -22,6 +22,7 @@ namespace Models.Models
         public string URL { get; set; }
 
         public ICollection<Courses> Cources { get; set; }
+        public ICollection<License> Licenses { get; set; }
 
     }
 }

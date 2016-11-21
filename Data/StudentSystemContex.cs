@@ -13,14 +13,14 @@ namespace Data
         public StudentSystemContex()
             : base("name=StudentSystemContex")
         {
-           // Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentSystemContex, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<StudentSystemContex,Configuration>());
         }
 
        public virtual IDbSet<Courses> Cources { get; set; }
         public virtual IDbSet<HomeWork> HomeWorks { get; set; }
         public virtual IDbSet<Resources> Resources { get; set; }
         public virtual  IDbSet<Students> Students { get; set; }
-        public virtual DbSet<License> Licenses { get; set; }
+        public virtual IDbSet<License> Licenses { get; set; }
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
     }
 

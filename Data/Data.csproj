@@ -52,9 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Migrations\201611181319194_alabala.cs" />
-    <Compile Include="Migrations\201611181319194_alabala.Designer.cs">
-      <DependentUpon>201611181319194_alabala.cs</DependentUpon>
+    <Compile Include="Migrations\201611210924559_initial.cs" />
+    <Compile Include="Migrations\201611210924559_initial.Designer.cs">
+      <DependentUpon>201611210924559_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611211003577_licenseOut.cs" />
+    <Compile Include="Migrations\201611211003577_licenseOut.Designer.cs">
+      <DependentUpon>201611211003577_licenseOut.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyInitilizer.cs" />
@@ -74,8 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611181319194_alabala.resx">
-      <DependentUpon>201611181319194_alabala.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611210924559_initial.resx">
+      <DependentUpon>201611210924559_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611211003577_licenseOut.resx">
+      <DependentUpon>201611211003577_licenseOut.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
